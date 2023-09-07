@@ -1,16 +1,21 @@
-# This is a sample Python script.
+from Plotting import *
+from Data_Processing import *
 
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+# List of NYSE stock tickers
+nyse_stock_tickers = ["AAPL", "MSFT", "GOOGL", "AMZN", "XPEV"]
 
+# Create an empty DataFrame
+df = pd.DataFrame()
+ohlc = pd.DataFrame()
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+# Fetch the data from Yahoo Finance & process into pandas dataframe
+data_fetchnpro(nyse_stock_tickers,df,ohlc)
 
+# Call the function to plot each ticker's data
+for ticker in nyse_stock_tickers:
+    plot_df(df,ticker)
 
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
+# Call the function to plot the OHLC data for each ticker
+for ticker in nyse_stock_tickers:
+    plot_ohlc_matplotlib(ohlc, ticker)
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
